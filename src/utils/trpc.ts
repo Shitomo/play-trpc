@@ -24,6 +24,13 @@ export const trpc = createTRPCNext<AppRouter>({
           async headers() {
             return {};
           },
+          // https://trpc.io/docs/client/cors
+          fetch(url, options) {
+            return fetch(url, {
+              ...options,
+              credentials: 'include',
+            });
+          },
         }),
       ],
     };
